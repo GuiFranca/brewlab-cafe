@@ -1,0 +1,17 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cappuccino Cremoso">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8d6e63"/>
+      <stop offset="100%" stop-color="#d7ccc8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <ellipse cx="600" cy="570" rx="280" ry="52" fill="#000" opacity="0.2"/>
+  <rect x="380" y="290" width="440" height="250" rx="30" fill="#ffffff"/>
+  <ellipse cx="600" cy="300" rx="180" ry="48" fill="#f3e5ab"/>
+  <circle cx="560" cy="280" r="22" fill="#ffffff" opacity="0.85"/>
+  <circle cx="620" cy="265" r="26" fill="#ffffff" opacity="0.9"/>
+  <circle cx="665" cy="285" r="18" fill="#ffffff" opacity="0.8"/>
+  <text x="60" y="100" fill="#2f1b14" font-family="Georgia, serif" font-size="64">Cappuccino Cremoso</text>
+  <text x="60" y="160" fill="#4e342e" font-family="Arial, sans-serif" font-size="30">Cafe, leite e espuma</text>
+</svg>

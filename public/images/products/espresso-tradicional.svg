@@ -1,0 +1,15 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Espresso Tradicional">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2b1d18"/>
+      <stop offset="100%" stop-color="#6d4c41"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <ellipse cx="600" cy="560" rx="260" ry="48" fill="#000" opacity="0.25"/>
+  <rect x="420" y="300" width="360" height="220" rx="24" fill="#f1e5d2"/>
+  <rect x="470" y="250" width="260" height="70" rx="35" fill="#f1e5d2"/>
+  <rect x="445" y="340" width="310" height="150" rx="18" fill="#5d4037"/>
+  <text x="60" y="100" fill="#fff7ec" font-family="Georgia, serif" font-size="64">Espresso Tradicional</text>
+  <text x="60" y="160" fill="#f9d9b2" font-family="Arial, sans-serif" font-size="30">Intenso e encorpado</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Coado Artesanal">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c8a97e"/>
+      <stop offset="100%" stop-color="#f5efe6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <ellipse cx="600" cy="585" rx="230" ry="40" fill="#000" opacity="0.16"/>
+  <polygon points="520,260 680,260 630,430 570,430" fill="#fffaf1"/>
+  <rect x="540" y="430" width="120" height="120" rx="16" fill="#8d6e63"/>
+  <circle cx="600" cy="495" r="20" fill="#5d4037"/>
+  <text x="60" y="100" fill="#4e342e" font-family="Georgia, serif" font-size="64">Coado Artesanal</text>
+  <text x="60" y="160" fill="#5d4037" font-family="Arial, sans-serif" font-size="30">Extracao lenta e limpa</text>
+</svg>
