@@ -1,6 +1,6 @@
 import type { Product } from '@/types/product'
 
-export const productsMock: Product[] = [
+export const products: Product[] = [
   {
     slug: 'espresso-tradicional',
     title: 'Espresso Tradicional',
