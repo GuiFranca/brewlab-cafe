@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { products } from '@/services/mock/products'
 import { Product } from '@/types/product'
@@ -29,10 +30,11 @@ export default async function ProductPage({ params }: Props) {
     <main style={{ padding: 32 }}>
       <h1>{product.title}</h1>
 
-      <img
+      <Image
         src={product.image}
         alt={product.title}
         width={400}
+        height={300}
       />
 
       <p>{product.description}</p>
