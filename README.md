@@ -1,4 +1,4 @@
-# BrewLab Cafe - Mini Aplicacao Next.js
+# Cafézin - Mini Aplicacao Next.js
 
 Mini aplicacao web desenvolvida com **Next.js + TypeScript** simulando o cardapio digital de uma cafeteria moderna.
 O objetivo do projeto e demonstrar na pratica conceitos fundamentais de **HTML, CSS, JavaScript, Node.js, React e Next.js**, aplicando diferentes estrategias de renderizacao e boas praticas de organizacao.
