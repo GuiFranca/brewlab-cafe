@@ -1,36 +1,199 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BrewLab Cafe - Mini Aplicacao Next.js
 
-## Getting Started
+Mini aplicacao web desenvolvida com **Next.js + TypeScript** simulando o cardapio digital de uma cafeteria moderna.
+O objetivo do projeto e demonstrar na pratica conceitos fundamentais de **HTML, CSS, JavaScript, Node.js, React e Next.js**, aplicando diferentes estrategias de renderizacao e boas praticas de organizacao.
 
-First, run the development server:
+---
+
+# Tecnologias Utilizadas
+
+* Next.js (App Router)
+* React
+* TypeScript
+* CSS Modules
+* API Routes (Node.js runtime)
+* ESLint + Prettier
+
+---
+
+# Arquitetura do Projeto
+
+Estrutura organizada por responsabilidades:
+
+```text
+src/
+ ├── app/
+ │    ├── api/           → endpoints mock (backend simulado)
+ │    ├── products/      → paginas dinamicas
+ │    ├── profile/       → pagina CSR
+ │    └── page.tsx       → Home (SSG)
+ ├── components/         → componentes reutilizaveis
+ ├── services/mock/      → dados simulados
+ ├── types/              → tipagens TypeScript
+ └── styles/             → estilos globais
+```
+
+Essa organizacao facilita manutencao, escalabilidade e separacao de responsabilidades.
+
+---
+
+# Estrategias de Renderizacao
+
+## Home - Static Site Generation (SSG)
+
+A pagina inicial utiliza **SSG** pois o cardapio da cafeteria e essencialmente estatico.
+
+Vantagens:
+
+* Melhor performance
+* Carregamento rapido
+* Menor custo de processamento
+
+---
+
+## Pagina Detalhe - Incremental Static Regeneration (ISR)
+
+A pagina de produto utiliza **ISR**:
+
+```ts
+export const revalidate = 60
+```
+
+Motivo:
+
+* Informacoes como preco ou descricao podem mudar ocasionalmente.
+* Nao e necessario renderizar a cada requisicao.
+* ISR permite atualizar o conteudo periodicamente mantendo alta performance.
+
+---
+
+## Perfil do Usuario - Client Side Rendering (CSR)
+
+A pagina de perfil utiliza:
+
+```ts
+'use client'
+```
+
+Motivo:
+
+* Conteudo personalizado.
+* Simulacao de autenticacao leve.
+* Edicao dinamica de dados do usuario via estado local.
+
+---
+
+# API Routes
+
+Endpoints mock criados:
+
+```text
+GET /api/products
+GET /api/products/[slug]
+```
+
+Objetivo:
+
+* Simular backend.
+* Separar camada de dados da interface.
+* Facilitar integracao futura com API real.
+
+---
+
+# Estilizacao
+
+Foi utilizado **CSS Modules**.
+
+Motivos da escolha:
+
+* Escopo local dos estilos.
+* Melhor organizacao.
+* Integracao nativa com Next.js.
+* Evita conflitos globais.
+
+Layout responsivo foi construido utilizando:
+
+* CSS Grid → listagem de produtos.
+* Flexbox → layouts internos e pagina detalhe.
+
+---
+
+# Acessibilidade
+
+Boas praticas aplicadas:
+
+* Uso de `alt` nas imagens.
+* Labels e atributos semanticos em botoes e inputs.
+* Estrutura HTML semantica.
+
+---
+
+# Funcionalidades Implementadas
+
+* Listagem de produtos (minimo 5 itens)
+* Rota dinamica via slug
+* Pagina detalhe com ISR
+* Pagina de perfil com CSR
+* API Routes mockadas
+* Layout responsivo
+* Codigo em TypeScript
+* ESLint e Prettier configurados
+
+Extras implementados:
+
+* Identidade visual premium inspirada em cafeterias modernas.
+* Componentizacao reutilizavel.
+
+---
+
+# Como Rodar o Projeto
+
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Rodar em desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build de producao:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Executar build:
 
-## Learn More
+```bash
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Scripts Disponiveis
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+npm run dev     → ambiente de desenvolvimento
+npm run build   → build de producao
+npm run start   → iniciar producao
+npm run lint    → analise de codigo
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Decisoes Tecnicas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* SSG foi utilizado na Home para maximizar performance.
+* ISR foi aplicado na pagina detalhe para balancear atualizacao e velocidade.
+* CSR foi escolhido para o perfil por envolver dados personalizados.
+* CSS Modules foi adotado pela simplicidade e isolamento de estilos.
+
+---
+
+# Autor
+
+Projeto desenvolvido como exercicio pratico de aplicacao dos conceitos modernos de desenvolvimento web com Next.js.

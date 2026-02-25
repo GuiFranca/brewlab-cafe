@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { headers } from 'next/headers'
-import { Product } from '@/types/product'
+import { getProductBySlug, getProducts } from '@/services/mock/products'
 import styles from './page.module.css'
 
 type Props = {
@@ -10,35 +9,21 @@ type Props = {
   }>
 }
 
-// ISR — revalida a cada 60s
+// ISR: revalida a rota a cada 60 segundos.
 export const revalidate = 60
 
-async function getProduct(slug: string): Promise<Product> {
-  const headersList = await headers()
-  const host = headersList.get('host')
-
-  if (!host) {
-    notFound()
-  }
-
-  const protocol =
-    headersList.get('x-forwarded-proto') ??
-    (host.includes('localhost') ? 'http' : 'https')
-
-  const response = await fetch(`${protocol}://${host}/api/products/${slug}`, {
-    next: { revalidate },
-  })
-
-  if (!response.ok) {
-    notFound()
-  }
-
-  return response.json()
+export async function generateStaticParams() {
+  const products = await getProducts()
+  return products.map(product => ({ slug: product.slug }))
 }
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params
-  const product = await getProduct(slug)
+  const product = await getProductBySlug(slug)
+
+  if (!product) {
+    notFound()
+  }
 
   return (
     <main className={styles.container}>

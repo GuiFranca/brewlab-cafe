@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next'
 import Header from '@/components/Header'
-import "./globals.css";
+import '@/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: "Cafézin",
-  description: "Desafio Next Zup - Cafézin",
-};
+  title: 'Cafézin',
+  description: 'Desafio Next Zup - Cafézin',
+}
 
 export default function RootLayout({
   children,

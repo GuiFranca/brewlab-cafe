@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server'
-import { products } from '@/services/mock/products'
+import { getProductBySlug } from '@/services/mock/products'
 
 export async function GET(
   request: Request,
   context: { params: Promise<{ slug: string }> }
 ) {
+  void request
   const { slug } = await context.params
 
-  const product = products.find(p => p.slug === slug)
+  const product = await getProductBySlug(slug)
 
   if (!product) {
     return NextResponse.json({ message: 'Not found' }, { status: 404 })

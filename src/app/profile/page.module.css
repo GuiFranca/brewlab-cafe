@@ -1,0 +1,90 @@
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.title {
+  margin: 0 0 0.5rem;
+  color: var(--coffee-primary);
+}
+
+.subtitle {
+  margin: 0 0 1.25rem;
+  color: #5c5350;
+  line-height: 1.5;
+}
+
+.authButton {
+  border: 0;
+  border-radius: 999px;
+  background: var(--coffee-primary);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.65rem 1.1rem;
+  cursor: pointer;
+}
+
+.authButton:focus-visible,
+.saveButton:focus-visible,
+.form input:focus-visible {
+  outline: 2px solid var(--coffee-accent);
+  outline-offset: 2px;
+}
+
+.status {
+  margin: 0.85rem 0 1rem;
+  font-weight: 600;
+  color: #49372d;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fieldset {
+  border: 1px solid #dacfc7;
+  border-radius: 12px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  background: #fff;
+}
+
+.fieldset label {
+  font-size: 0.92rem;
+  color: #423834;
+}
+
+.fieldset input {
+  width: 100%;
+  border: 1px solid #cdc2ba;
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.saveButton {
+  width: fit-content;
+  border: 0;
+  border-radius: 10px;
+  background: var(--coffee-accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+}
+
+.saveButton:disabled {
+  background: #bda99a;
+  cursor: not-allowed;
+}
+
+.message {
+  margin: 0.75rem 0 0;
+  color: #225d2b;
+  font-weight: 600;
+}

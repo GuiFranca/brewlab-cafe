@@ -52,3 +52,12 @@ export const products: Product[] = [
     category: 'cafe',
   },
 ]
+
+export async function getProducts(): Promise<Product[]> {
+  return products
+}
+
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const product = products.find(item => item.slug === slug)
+  return product ?? null
+}
