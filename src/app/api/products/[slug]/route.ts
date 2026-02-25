@@ -3,9 +3,9 @@ import { products } from '@/services/mock/products'
 
 export async function GET(
   request: Request,
-  context: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
-  const { slug } = context.params
+  const { slug } = await context.params
 
   const product = products.find(p => p.slug === slug)
 
