@@ -2,7 +2,7 @@
 
 :root {
   --coffee-primary: #5b3a29;
-  --coffee-accent: #a46b3a;
+  --coffee-accent: #925b2d;
   --coffee-bg: #f6f3ef;
   --coffee-text: #2b2b2b;
   --background: var(--coffee-bg);
@@ -37,4 +37,38 @@ body {
 
 #menu {
   scroll-margin-top: 100px;
+}
+
+.skipLink {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--coffee-primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 1000;
+}
+
+.skipLink:focus-visible {
+  top: 16px;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

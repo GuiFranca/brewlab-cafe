@@ -31,18 +31,19 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    setIsLoggedIn(checkAuth())
-
-    function handleAuthChange() {
+    const syncAuthState = () => {
       setIsLoggedIn(checkAuth())
     }
 
-    window.addEventListener('auth-change', handleAuthChange)
-    window.addEventListener('storage', handleAuthChange)
+    const timeoutId = window.setTimeout(syncAuthState, 0)
+
+    window.addEventListener('auth-change', syncAuthState)
+    window.addEventListener('storage', syncAuthState)
 
     return () => {
-      window.removeEventListener('auth-change', handleAuthChange)
-      window.removeEventListener('storage', handleAuthChange)
+      window.clearTimeout(timeoutId)
+      window.removeEventListener('auth-change', syncAuthState)
+      window.removeEventListener('storage', syncAuthState)
     }
   }, [])
 
@@ -53,7 +54,7 @@ export default function Header() {
         Cafézin
       </Link>
 
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label="Navegação principal">
         <Link href="/" className={styles.navLink}>
           Home
         </Link>

@@ -16,6 +16,9 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
+        <a href="#main-content" className="skipLink">
+          Pular para o conteúdo principal
+        </a>
         <Header />
         <Container>{children}</Container>
       </body>

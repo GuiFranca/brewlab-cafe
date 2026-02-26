@@ -28,7 +28,7 @@ export default async function ProductPage({ params }: Props) {
   }
 
   return (
-    <main className={styles.content}>
+    <main id="main-content" tabIndex={-1} className={styles.content}>
       <div className={styles.image}>
         <Image
           src={product.image}

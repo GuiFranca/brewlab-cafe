@@ -1,14 +1,19 @@
-'use client';
+'use client'
 
 import styles from './Hero.module.css'
 
 export default function Hero() {
   const handleScrollToMenu = () => {
-    const menuElement = document.getElementById('menu');
+    const menuElement = document.getElementById('menu')
     if (menuElement) {
-      menuElement.scrollIntoView({ behavior: 'smooth' });
+      const shouldReduceMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches
+      menuElement.scrollIntoView({
+        behavior: shouldReduceMotion ? 'auto' : 'smooth',
+      })
     }
-  };
+  }
 
   return (
     <section className={styles.hero}>

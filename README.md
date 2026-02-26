@@ -125,6 +125,10 @@ Boas praticas aplicadas:
 * Uso de `alt` nas imagens.
 * Labels e atributos semanticos em botoes e inputs.
 * Estrutura HTML semantica.
+* Link de atalho para pular direto ao conteudo principal.
+* Estados de foco visivel para navegacao por teclado.
+* Respeito a `prefers-reduced-motion` para reduzir animacoes.
+* Ajustes de contraste para atender melhor o WCAG AA em textos pequenos.
 
 ---
 

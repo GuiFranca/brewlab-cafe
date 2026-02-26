@@ -10,8 +10,8 @@ type Props = {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Link href={`/products/${product.slug}`}>
-      <div className={styles.card}>
+    <Link href={`/products/${product.slug}`} className={styles.cardLink}>
+      <article className={styles.card}>
         <Image
           src={product.image}
           alt={product.title}
@@ -29,7 +29,7 @@ export default function ProductCard({ product }: Props) {
         <strong className={styles.price}>
           {formatCurrency(product.price)}
         </strong>
-      </div>
+      </article>
     </Link>
   )
 }
