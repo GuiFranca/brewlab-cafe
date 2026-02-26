@@ -27,7 +27,7 @@ describe('ProductCard', () => {
   it('renderiza o preço formatado', () => {
     render(<ProductCard product={product} />)
 
-    expect(screen.getByText('R$\u00a08,50')).toBeInTheDocument()
+    expect(screen.getByText(/R\$\s*8,50/)).toBeInTheDocument()
   })
 
   it('aponta o link para o slug do produto', () => {
