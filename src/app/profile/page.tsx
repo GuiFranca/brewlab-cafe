@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import styles from './page.module.css'
 
 type UserProfile = {
@@ -26,7 +27,7 @@ const AUTH_TTL_MS = 24 * 60 * 60 * 1000
 const DEFAULT_PROFILE: UserProfile = {
   name: 'Guilherme',
   email: 'gui@email.com',
-  city: 'Capivari',
+  city: 'Campinas',
   favoriteDrink: 'Espresso'
 }
 
@@ -56,6 +57,18 @@ function validateProfile(profile: UserProfile): FieldErrors {
   return errors
 }
 
+function dispatchAuthChange() {
+  window.dispatchEvent(new Event('auth-change'))
+}
+
+function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .slice(0, 2)
+    .map(w => w.charAt(0).toUpperCase())
+    .join('')
+}
+
 export default function ProfilePage() {
   const [authStatus, setAuthStatus] = useState<AuthStatus>('checking')
   const [sessionExpiresAt, setSessionExpiresAt] = useState<number | null>(null)
@@ -70,6 +83,7 @@ export default function ProfilePage() {
   const [loginError, setLoginError] = useState('')
   const [isLoginLoading, setIsLoginLoading] = useState(false)
   const nameInputRef = useRef<HTMLInputElement | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -126,16 +140,14 @@ export default function ProfilePage() {
   }, [isEditing])
 
   useEffect(() => {
-    if (!isEditing) {
-      return
-    }
+    if (!isEditing) return
 
     function onKeydown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setDraftProfile(profile)
         setFieldErrors({})
         setSaveStatus('idle')
-        setFeedback('Edicao cancelada.')
+        setFeedback('Edição cancelada.')
         setIsEditing(false)
       }
     }
@@ -144,22 +156,14 @@ export default function ProfilePage() {
     return () => window.removeEventListener('keydown', onKeydown)
   }, [isEditing, profile])
 
-  function handleDraftChange(
-    e: React.ChangeEvent<HTMLInputElement>
-  ) {
+  function handleDraftChange(e: React.ChangeEvent<HTMLInputElement>) {
     const field = e.target.name as keyof UserProfile
     const value = e.target.value
 
-    setDraftProfile(prev => ({
-      ...prev,
-      [field]: value
-    }))
+    setDraftProfile(prev => ({ ...prev, [field]: value }))
 
     setFieldErrors(prev => {
-      if (!prev[field]) {
-        return prev
-      }
-
+      if (!prev[field]) return prev
       const next = { ...prev }
       delete next[field]
       return next
@@ -172,7 +176,7 @@ export default function ProfilePage() {
     setFeedback('')
 
     if (!isValidEmail(loginEmail) || loginPassword.trim().length < 4) {
-      setLoginError('Informe email valido e senha com no minimo 4 caracteres.')
+      setLoginError('Informe email válido e senha com no mínimo 4 caracteres.')
       return
     }
 
@@ -180,7 +184,7 @@ export default function ProfilePage() {
     await new Promise(resolve => setTimeout(resolve, 900))
 
     if (Math.random() < 0.15) {
-      setLoginError('Falha temporaria ao autenticar. Tente novamente.')
+      setLoginError('Falha temporária ao autenticar. Tente novamente.')
       setIsLoginLoading(false)
       return
     }
@@ -195,7 +199,9 @@ export default function ProfilePage() {
     setAuthStatus('authenticated')
     setIsLoginLoading(false)
     setLoginPassword('')
-    setFeedback('Login realizado com sucesso.')
+    setFeedback('Login realizado com sucesso!')
+    dispatchAuthChange()
+    router.push('/')
   }
 
   function handleLogout() {
@@ -204,7 +210,8 @@ export default function ProfilePage() {
     setSessionExpiresAt(null)
     setIsEditing(false)
     setSaveStatus('idle')
-    setFeedback('Sessao encerrada.')
+    setFeedback('Sessão encerrada.')
+    dispatchAuthChange()
   }
 
   function handleStartEditing() {
@@ -219,7 +226,7 @@ export default function ProfilePage() {
     setDraftProfile(profile)
     setFieldErrors({})
     setSaveStatus('idle')
-    setFeedback('Edicao cancelada.')
+    setFeedback('Edição cancelada.')
     setIsEditing(false)
   }
 
@@ -239,14 +246,14 @@ export default function ProfilePage() {
 
     if (Math.random() < 0.2) {
       setSaveStatus('error')
-      setFeedback('Nao foi possivel salvar agora. Tente novamente.')
+      setFeedback('Não foi possível salvar agora. Tente novamente.')
       return
     }
 
     setProfile(draftProfile)
     localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(draftProfile))
     setSaveStatus('success')
-    setFeedback('Dados atualizados com sucesso.')
+    setFeedback('Dados atualizados com sucesso!')
     setIsEditing(false)
   }
 
@@ -261,7 +268,7 @@ export default function ProfilePage() {
       ? 'Salvando...'
       : saveStatus === 'error'
         ? 'Tentar novamente'
-        : 'Salvar alteracoes'
+        : 'Salvar alterações'
 
   const hasError = (field: keyof UserProfile) => Boolean(fieldErrors[field])
 
@@ -273,46 +280,60 @@ export default function ProfilePage() {
 
   return (
     <main className={styles.page}>
-      <h1 className={styles.title}>Perfil do Usuario</h1>
-      <p className={styles.subtitle}>
-        Conteudo personalizado em CSR com autenticacao simulada via estado local.
-      </p>
+      <div className={styles.pageHeader}>
+        <h1 className={styles.title}>Meu Perfil</h1>
+        <p className={styles.subtitle}>Gerencie sua conta e preferências</p>
+      </div>
 
+      {/* Loading state */}
       {authStatus === 'checking' && (
-        <p role="status" aria-live="polite" className={styles.status}>
-          Carregando sessao...
-        </p>
+        <div className={styles.loadingWrapper}>
+          <div className={styles.spinner} />
+          <p className={styles.loadingText}>Carregando sessão...</p>
+        </div>
       )}
 
+      { }
       {authStatus === 'guest' && (
         <section className={styles.card}>
-          <h2 className={styles.sectionTitle}>Acessar conta</h2>
-          <form className={styles.form} onSubmit={handleLogin}>
-            <label htmlFor="loginEmail">Email</label>
-            <input
-              id="loginEmail"
-              name="loginEmail"
-              type="email"
-              autoComplete="email"
-              value={loginEmail}
-              onChange={e => setLoginEmail(e.target.value)}
-              placeholder="voce@email.com"
-            />
+          <div className={styles.loginHeader}>
+            <span className={styles.loginIcon}>☕</span>
+            <h2 className={styles.sectionTitle}>Acessar sua conta</h2>
+            <p className={styles.loginSubtitle}>
+              Entre para gerenciar seu perfil e pedidos
+            </p>
+          </div>
 
-            <label htmlFor="loginPassword">Senha</label>
-            <input
-              id="loginPassword"
-              name="loginPassword"
-              type="password"
-              autoComplete="current-password"
-              value={loginPassword}
-              onChange={e => setLoginPassword(e.target.value)}
-              placeholder="********"
-            />
+          <form className={styles.form} onSubmit={handleLogin}>
+            <div className={styles.inputGroup}>
+              <label htmlFor="loginEmail">Email</label>
+              <input
+                id="loginEmail"
+                name="loginEmail"
+                type="email"
+                autoComplete="email"
+                value={loginEmail}
+                onChange={e => setLoginEmail(e.target.value)}
+                placeholder="voce@email.com"
+              />
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label htmlFor="loginPassword">Senha</label>
+              <input
+                id="loginPassword"
+                name="loginPassword"
+                type="password"
+                autoComplete="current-password"
+                value={loginPassword}
+                onChange={e => setLoginPassword(e.target.value)}
+                placeholder="••••••••"
+              />
+            </div>
 
             <button
               type="submit"
-              className={styles.authButton}
+              className={styles.primaryButton}
               disabled={isLoginLoading}
             >
               {isLoginLoading ? 'Entrando...' : 'Entrar'}
@@ -327,176 +348,205 @@ export default function ProfilePage() {
         </section>
       )}
 
+      { }
       {isAuthenticated && (
         <section className={styles.card}>
-          <div className={styles.header}>
-            <h2 className={styles.sectionTitle}>Minha conta</h2>
-            <div className={styles.actions}>
-              {!isEditing && (
-                <button
-                  type="button"
-                  className={styles.secondaryButton}
-                  onClick={handleStartEditing}
-                >
-                  Editar perfil
-                </button>
-              )}
-              {isEditing && (
-                <button
-                  type="button"
-                  className={styles.secondaryButton}
-                  onClick={handleCancelEditing}
-                >
-                  Cancelar
-                </button>
-              )}
+          { }
+          <div className={styles.profileTop}>
+            <div className={styles.avatar}>
+              {getInitials(profile.name)}
+            </div>
+            <h2 className={styles.profileName}>{profile.name}</h2>
+            <p className={styles.profileEmail}>{profile.email}</p>
+          </div>
+
+          {/* Actions */}
+          <div className={styles.actionsRow}>
+            {!isEditing && (
               <button
                 type="button"
-                className={styles.authButton}
-                onClick={handleLogout}
+                className={styles.secondaryButton}
+                onClick={handleStartEditing}
               >
-                Sair
+                Editar perfil
               </button>
-            </div>
+            )}
+            {isEditing && (
+              <button
+                type="button"
+                className={styles.secondaryButton}
+                onClick={handleCancelEditing}
+              >
+                ✕ Cancelar
+              </button>
+            )}
+            <button
+              type="button"
+              className={styles.dangerButton}
+              onClick={handleLogout}
+            >
+              Sair
+            </button>
           </div>
 
-          <p className={styles.status}>Status: Autenticado</p>
+          { }
           {expiresAtLabel && (
-            <p className={styles.sessionInfo}>
-              Sessao ativa ate: {expiresAtLabel}
-            </p>
+            <div className={styles.sessionBadge}>
+              <span>🟢</span> Sessão ativa até {expiresAtLabel}
+            </div>
           )}
 
+          { }
           <div className={styles.highlights}>
             <article className={styles.highlightCard}>
-              <span>Pontos fidelidade</span>
-              <strong>128</strong>
+              <div className={`${styles.highlightIcon} ${styles.points}`}>
+                ⭐
+              </div>
+              <div className={styles.highlightContent}>
+                <span>Pontos fidelidade</span>
+                <strong>128</strong>
+              </div>
             </article>
             <article className={styles.highlightCard}>
-              <span>Ultimo pedido</span>
-              <strong>Mocha Chocolate</strong>
+              <div className={`${styles.highlightIcon} ${styles.order}`}>
+                ☕
+              </div>
+              <div className={styles.highlightContent}>
+                <span>Último pedido</span>
+                <strong>Mocha Chocolate</strong>
+              </div>
             </article>
           </div>
 
+          { }
           {!isEditing && (
             <dl className={styles.infoList}>
-              <div>
+              <div className={styles.infoItem}>
                 <dt>Nome</dt>
                 <dd>{profile.name}</dd>
               </div>
-              <div>
+              <div className={styles.infoItem}>
                 <dt>Email</dt>
                 <dd>{profile.email}</dd>
               </div>
-              <div>
+              <div className={styles.infoItem}>
                 <dt>Cidade</dt>
                 <dd>{profile.city}</dd>
               </div>
-              <div>
+              <div className={styles.infoItem}>
                 <dt>Bebida favorita</dt>
                 <dd>{profile.favoriteDrink}</dd>
               </div>
             </dl>
           )}
 
+          { }
           {isEditing && (
             <form className={styles.form} onSubmit={handleSave}>
               <fieldset className={styles.fieldset}>
                 <legend>Editar dados</legend>
 
-                <label htmlFor="name">Nome</label>
-                <input
-                  ref={nameInputRef}
-                  id="name"
-                  name="name"
-                  value={draftProfile.name}
-                  onChange={handleDraftChange}
-                  placeholder="Nome"
-                  autoComplete="name"
-                  aria-invalid={hasError('name')}
-                  aria-describedby={
-                    hasError('name') ? getFieldErrorId('name') : undefined
-                  }
-                />
-                {fieldErrors.name && (
-                  <p
-                    id={getFieldErrorId('name')}
-                    role="alert"
-                    className={styles.fieldError}
-                  >
-                    {fieldErrors.name}
-                  </p>
-                )}
+                <div className={styles.inputGroup}>
+                  <label htmlFor="name">Nome</label>
+                  <input
+                    ref={nameInputRef}
+                    id="name"
+                    name="name"
+                    value={draftProfile.name}
+                    onChange={handleDraftChange}
+                    placeholder="Seu nome"
+                    autoComplete="name"
+                    aria-invalid={hasError('name')}
+                    aria-describedby={
+                      hasError('name') ? getFieldErrorId('name') : undefined
+                    }
+                  />
+                  {fieldErrors.name && (
+                    <p
+                      id={getFieldErrorId('name')}
+                      role="alert"
+                      className={styles.fieldError}
+                    >
+                      {fieldErrors.name}
+                    </p>
+                  )}
+                </div>
 
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  value={draftProfile.email}
-                  onChange={handleDraftChange}
-                  placeholder="Email"
-                  type="email"
-                  autoComplete="email"
-                  aria-invalid={hasError('email')}
-                  aria-describedby={
-                    hasError('email') ? getFieldErrorId('email') : undefined
-                  }
-                />
-                {fieldErrors.email && (
-                  <p
-                    id={getFieldErrorId('email')}
-                    role="alert"
-                    className={styles.fieldError}
-                  >
-                    {fieldErrors.email}
-                  </p>
-                )}
+                <div className={styles.inputGroup}>
+                  <label htmlFor="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    value={draftProfile.email}
+                    onChange={handleDraftChange}
+                    placeholder="seu@email.com"
+                    type="email"
+                    autoComplete="email"
+                    aria-invalid={hasError('email')}
+                    aria-describedby={
+                      hasError('email') ? getFieldErrorId('email') : undefined
+                    }
+                  />
+                  {fieldErrors.email && (
+                    <p
+                      id={getFieldErrorId('email')}
+                      role="alert"
+                      className={styles.fieldError}
+                    >
+                      {fieldErrors.email}
+                    </p>
+                  )}
+                </div>
 
-                <label htmlFor="city">Cidade</label>
-                <input
-                  id="city"
-                  name="city"
-                  value={draftProfile.city}
-                  onChange={handleDraftChange}
-                  placeholder="Cidade"
-                  aria-invalid={hasError('city')}
-                  aria-describedby={
-                    hasError('city') ? getFieldErrorId('city') : undefined
-                  }
-                />
-                {fieldErrors.city && (
-                  <p
-                    id={getFieldErrorId('city')}
-                    role="alert"
-                    className={styles.fieldError}
-                  >
-                    {fieldErrors.city}
-                  </p>
-                )}
+                <div className={styles.inputGroup}>
+                  <label htmlFor="city">Cidade</label>
+                  <input
+                    id="city"
+                    name="city"
+                    value={draftProfile.city}
+                    onChange={handleDraftChange}
+                    placeholder="Sua cidade"
+                    aria-invalid={hasError('city')}
+                    aria-describedby={
+                      hasError('city') ? getFieldErrorId('city') : undefined
+                    }
+                  />
+                  {fieldErrors.city && (
+                    <p
+                      id={getFieldErrorId('city')}
+                      role="alert"
+                      className={styles.fieldError}
+                    >
+                      {fieldErrors.city}
+                    </p>
+                  )}
+                </div>
 
-                <label htmlFor="favoriteDrink">Bebida favorita</label>
-                <input
-                  id="favoriteDrink"
-                  name="favoriteDrink"
-                  value={draftProfile.favoriteDrink}
-                  onChange={handleDraftChange}
-                  placeholder="Bebida favorita"
-                  aria-invalid={hasError('favoriteDrink')}
-                  aria-describedby={
-                    hasError('favoriteDrink')
-                      ? getFieldErrorId('favoriteDrink')
-                      : undefined
-                  }
-                />
-                {fieldErrors.favoriteDrink && (
-                  <p
-                    id={getFieldErrorId('favoriteDrink')}
-                    role="alert"
-                    className={styles.fieldError}
-                  >
-                    {fieldErrors.favoriteDrink}
-                  </p>
-                )}
+                <div className={styles.inputGroup}>
+                  <label htmlFor="favoriteDrink">Bebida favorita</label>
+                  <input
+                    id="favoriteDrink"
+                    name="favoriteDrink"
+                    value={draftProfile.favoriteDrink}
+                    onChange={handleDraftChange}
+                    placeholder="Sua bebida favorita"
+                    aria-invalid={hasError('favoriteDrink')}
+                    aria-describedby={
+                      hasError('favoriteDrink')
+                        ? getFieldErrorId('favoriteDrink')
+                        : undefined
+                    }
+                  />
+                  {fieldErrors.favoriteDrink && (
+                    <p
+                      id={getFieldErrorId('favoriteDrink')}
+                      role="alert"
+                      className={styles.fieldError}
+                    >
+                      {fieldErrors.favoriteDrink}
+                    </p>
+                  )}
+                </div>
               </fieldset>
 
               <button
@@ -511,6 +561,7 @@ export default function ProfilePage() {
         </section>
       )}
 
+      { }
       {feedback && (
         <p role="status" aria-live="polite" className={styles.message}>
           {feedback}

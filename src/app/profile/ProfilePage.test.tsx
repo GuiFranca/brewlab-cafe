@@ -25,7 +25,7 @@ describe('ProfilePage', () => {
     )
     render(<ProfilePage />)
 
-    await user.click(await screen.findByRole('button', { name: 'Editar perfil' }))
+    await user.click(await screen.findByRole('button', { name: /editar perfil/i }))
 
     const nameInput = screen.getByLabelText('Nome')
     await user.clear(nameInput)
