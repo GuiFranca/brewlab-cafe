@@ -51,6 +51,36 @@ export const products: Product[] = [
     image: '/images/products/coado-artesanal.svg',
     category: 'cafe',
   },
+  {
+    slug: 'flat-white',
+    title: 'Flat White',
+    shortDescription: 'Espresso intenso com leite microespumado.',
+    description:
+      'Bebida equilibrada com textura aveludada e sabor marcante de café, ideal para quem prefere menos espuma.',
+    price: 15.5,
+    image: '/images/products/latte-baunilha.svg',
+    category: 'cafe',
+  },
+  {
+    slug: 'macchiato-caramelo',
+    title: 'Macchiato Caramelo',
+    shortDescription: 'Camadas de café, leite e toque de caramelo.',
+    description:
+      'Combinação aromática com espresso, leite vaporizado e finalização de caramelo, perfeita para uma pausa doce.',
+    price: 18.9,
+    image: '/images/products/mocha-chocolate.svg',
+    category: 'cafe',
+  },
+  {
+    slug: 'cold-brew-citrico',
+    title: 'Cold Brew Citrico',
+    shortDescription: 'Extração a frio, suave e refrescante.',
+    description:
+      'Café extraído por longas horas em água fria, servido gelado com notas cítricas e baixa acidez.',
+    price: 16,
+    image: '/images/products/espresso-tradicional.svg',
+    category: 'cafe',
+  },
 ]
 
 export async function getProducts(): Promise<Product[]> {
