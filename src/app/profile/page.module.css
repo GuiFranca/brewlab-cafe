@@ -1,41 +1,57 @@
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
 .title {
-  margin: 0 0 0.5rem;
+  margin: 0;
   color: var(--coffee-primary);
 }
 
 .subtitle {
-  margin: 0 0 1.25rem;
+  margin: 0.75rem 0 1.25rem;
   color: #5c5350;
   line-height: 1.5;
 }
 
-.authButton {
-  border: 0;
-  border-radius: 999px;
-  background: var(--coffee-primary);
-  color: #fff;
-  font-weight: 600;
-  padding: 0.65rem 1.1rem;
-  cursor: pointer;
-}
-
-.authButton:focus-visible,
-.saveButton:focus-visible,
-.form input:focus-visible {
-  outline: 2px solid var(--coffee-accent);
-  outline-offset: 2px;
-}
-
 .status {
-  margin: 0.85rem 0 1rem;
+  margin: 0 0 0.5rem;
   font-weight: 600;
   color: #49372d;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e1d8d1;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 10px 28px rgba(91, 58, 41, 0.08);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #3c2a20;
+  font-size: 1.2rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.8rem;
+  margin-top: 1rem;
 }
 
 .fieldset {
@@ -46,6 +62,12 @@
   grid-template-columns: 1fr;
   gap: 0.45rem;
   background: #fff;
+}
+
+.fieldset legend {
+  color: #5d4438;
+  font-weight: 600;
+  padding: 0 0.35rem;
 }
 
 .fieldset label {
@@ -61,15 +83,34 @@
   font-size: 0.95rem;
 }
 
+.fieldError {
+  margin: 0;
+  color: #8f2323;
+  font-size: 0.82rem;
+}
+
+.authButton,
+.secondaryButton,
 .saveButton {
   width: fit-content;
   border: 0;
   border-radius: 10px;
-  background: var(--coffee-accent);
   color: #fff;
   font-weight: 600;
   padding: 0.65rem 1rem;
   cursor: pointer;
+}
+
+.authButton {
+  background: var(--coffee-primary);
+}
+
+.secondaryButton {
+  background: #8f6a53;
+}
+
+.saveButton {
+  background: var(--coffee-accent);
 }
 
 .saveButton:disabled {
@@ -77,8 +118,95 @@
   cursor: not-allowed;
 }
 
+.authButton:disabled {
+  background: #7f6f65;
+  cursor: not-allowed;
+}
+
+.authButton:focus-visible,
+.secondaryButton:focus-visible,
+.saveButton:focus-visible,
+.form input:focus-visible {
+  outline: 2px solid var(--coffee-accent);
+  outline-offset: 2px;
+}
+
+.sessionInfo {
+  margin: 0 0 1rem;
+  color: #6a5b53;
+  font-size: 0.92rem;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.highlightCard {
+  border-radius: 12px;
+  border: 1px solid #eadfd7;
+  background: #fcfaf8;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.highlightCard span {
+  color: #6e5d53;
+  font-size: 0.82rem;
+}
+
+.highlightCard strong {
+  color: #3d2c22;
+  font-size: 0.95rem;
+}
+
+.infoList {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.infoList div {
+  border: 1px solid #eadfd7;
+  border-radius: 10px;
+  padding: 0.7rem 0.8rem;
+  background: #fcfaf8;
+}
+
+.infoList dt {
+  color: #6b5a52;
+  font-size: 0.85rem;
+}
+
+.infoList dd {
+  margin: 0.2rem 0 0;
+  color: #35271f;
+  font-weight: 600;
+}
+
 .message {
-  margin: 0.75rem 0 0;
+  margin: 0.85rem 0 0;
   color: #225d2b;
   font-weight: 600;
+}
+
+.errorMessage {
+  margin: 0;
+  color: #8f2323;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+  }
 }

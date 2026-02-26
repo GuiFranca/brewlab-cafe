@@ -11,9 +11,7 @@ export default async function HomePage() {
       <Hero />
 
       <main>
-        <h2>Nosso Cardápio</h2>
-
-        <div className={styles.grid}>
+        <div id="menu" className={styles.grid}>
           {products.map(product => (
             <ProductCard key={product.slug} product={product} />
           ))}
