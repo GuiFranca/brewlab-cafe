@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getProductBySlug, getProducts } from '@/services/mock/products'
 import { formatCurrency } from '@/utils/format'
+import PurchaseButton from '@/components/PurchaseButton'
 import styles from './page.module.css'
 
 type Props = {
@@ -43,9 +44,7 @@ export default async function ProductPage({ params }: Props) {
         <h1 className={styles.title}>{product.title}</h1>
         <p className={styles.description}>{product.description}</p>
         <p className={styles.price}>{formatCurrency(product.price)}</p>
-        <button type="button" className={styles.favoriteBtn}>
-          Favoritar
-        </button>
+        <PurchaseButton className={styles.buyBtn} />
       </section>
     </main>
   )

@@ -13,6 +13,9 @@ vi.mock('next/navigation', () => ({
   notFound: vi.fn(() => {
     throw new Error('NEXT_NOT_FOUND')
   }),
+  useRouter: vi.fn(() => ({
+    push: vi.fn(),
+  })),
 }))
 
 describe('ProductPage', () => {
@@ -66,7 +69,7 @@ describe('ProductPage', () => {
     expect(screen.getByRole('heading', { name: 'Espresso Tradicional' })).toBeInTheDocument()
     expect(screen.getByText('Descrição completa')).toBeInTheDocument()
     expect(screen.getByText(/R\$\s*8,50/)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Favoritar' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Comprar' })).toBeInTheDocument()
   })
 
   it('chama notFound quando o produto nao existe', async () => {
