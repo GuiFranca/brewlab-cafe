@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Product } from '@/types/product'
+import { formatCurrency } from '@/utils/format'
 import styles from './ProductCard.module.css'
 
 type Props = {
@@ -26,7 +27,7 @@ export default function ProductCard({ product }: Props) {
         </p>
 
         <strong className={styles.price}>
-          R$ {product.price}
+          {formatCurrency(product.price)}
         </strong>
       </div>
     </Link>
