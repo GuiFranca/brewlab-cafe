@@ -1,8 +1,45 @@
 :root {
+  /* ── Cores de marca ── */
   --coffee-primary: #5b3a29;
   --coffee-accent: #925b2d;
   --coffee-bg: #f6f3ef;
   --coffee-text: #2b2b2b;
+
+  /* ── Variações de texto ── */
+  --coffee-text-dark: #3c2a20;
+  --coffee-text-medium: #35271f;
+  --coffee-text-muted: #6a5b53;
+  --coffee-text-light: #555;
+  --coffee-placeholder: #b5a89e;
+
+  /* ── Neutros ── */
+  --coffee-white: #ffffff;
+  --coffee-header-bg: rgba(255, 255, 255, 0.85);
+
+  /* ── Semânticas ── */
+  --coffee-danger: #c0392b;
+  --coffee-success: #236f3c;
+  --coffee-success-light: #287f45;
+  --coffee-primary-dark: #4d3124;
+
+  /* ── Raw RGB para rgba() ── */
+  --coffee-primary-rgb: 91, 58, 41;
+  --coffee-accent-rgb: 164, 107, 58;
+  --coffee-danger-rgb: 192, 57, 43;
+  --coffee-success-rgb: 45, 143, 78;
+
+  /* ── Tipografia ── */
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+
+  /* ── Escala tipográfica ── */
+  --font-size-xs: 0.78rem;
+  --font-size-sm: 0.88rem;
+  --font-size-base: 0.95rem;
+  --font-size-md: 1.05rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.75rem;
+  --font-size-hero: 2.625rem;
 }
 
 * {
@@ -20,7 +57,7 @@ body {
   min-height: 100vh;
   background: var(--coffee-bg);
   color: var(--coffee-text);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-sans);
   scroll-behavior: smooth;
 }
 
@@ -35,7 +72,7 @@ body {
   padding: 10px 14px;
   border-radius: 10px;
   background: var(--coffee-primary);
-  color: #fff;
+  color: var(--coffee-white);
   text-decoration: none;
   font-weight: 600;
   z-index: 1000;
@@ -43,7 +80,7 @@ body {
 
 .skipLink:focus-visible {
   top: 16px;
-  outline: 2px solid #fff;
+  outline: 2px solid var(--coffee-white);
   outline-offset: 2px;
 }
 

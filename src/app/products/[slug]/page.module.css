@@ -9,10 +9,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
+  background: var(--coffee-white);
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 12px 30px rgba(91, 58, 41, 0.08);
+  box-shadow: 0 12px 30px rgba(var(--coffee-primary-rgb), 0.08);
 }
 
 .info {
@@ -25,7 +25,7 @@
 
 .title {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: clamp(2rem, 3vw, 2.75rem);
   line-height: 1.15;
   color: var(--coffee-primary);
@@ -34,8 +34,8 @@
 .description {
   margin: 0;
   line-height: 1.75;
-  color: #4a433f;
-  font-size: 1.05rem;
+  color: var(--coffee-text-muted);
+  font-size: var(--font-size-md);
 }
 
 .price {
@@ -50,17 +50,17 @@
   border: 0;
   border-radius: 999px;
   background: var(--coffee-primary);
-  color: #f8f4ef;
+  color: var(--coffee-bg);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: var(--font-size-base);
   padding: 0.85rem 1.5rem;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 8px 20px rgba(91, 58, 41, 0.14);
+  box-shadow: 0 8px 20px rgba(var(--coffee-primary-rgb), 0.14);
 }
 
 .buyBtn:hover {
-  background: #4d3124;
+  background: var(--coffee-primary-dark);
   transform: translateY(-1px);
 }
 

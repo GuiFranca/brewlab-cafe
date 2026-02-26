@@ -11,12 +11,12 @@
 }
 
 .card {
-  background: #ffffff;
+  background: var(--coffee-white);
   border-radius: 12px;
   padding: 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .cardLink:hover .card,
@@ -37,12 +37,12 @@
 }
 
 .description {
-  font-size: 14px;
-  color: #666;
+  font-size: var(--font-size-sm);
+  color: var(--coffee-text-light);
 }
 
 .price {
   margin-top: 8px;
   font-weight: bold;
-  color: #5b3a29;
+  color: var(--coffee-primary);
 }
