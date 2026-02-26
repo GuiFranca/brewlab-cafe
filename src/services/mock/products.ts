@@ -8,7 +8,7 @@ export const products: Product[] = [
     description:
       'Extração clássica com grãos selecionados, ideal para quem gosta de sabor marcante e crema aveludada.',
     price: 8.5,
-    image: '/images/products/espresso-tradicional.svg',
+    image: '/images/products/espresso-tradicional.png',
     category: 'cafe',
   },
   {
@@ -18,7 +18,7 @@ export const products: Product[] = [
     description:
       'Preparado com espresso duplo, leite vaporizado e toque de canela para uma experiência cremosa e aromática.',
     price: 14.9,
-    image: '/images/products/cappuccino-cremoso.svg',
+    image: '/images/products/cappuccino-cremoso.png',
     category: 'cafe',
   },
   {
@@ -28,7 +28,7 @@ export const products: Product[] = [
     description:
       'Combinação de espresso com leite vaporizado e xarope natural de baunilha, perfeito para qualquer hora do dia.',
     price: 16.5,
-    image: '/images/products/latte-baunilha.svg',
+    image: '/images/products/latte-baunilha.png',
     category: 'cafe',
   },
   {
@@ -38,7 +38,7 @@ export const products: Product[] = [
     description:
       'Mistura de espresso, leite cremoso e chocolate meio amargo finalizada com leve camada de espuma.',
     price: 17.9,
-    image: '/images/products/mocha-chocolate.svg',
+    image: '/images/products/mocha-chocolate.png',
     category: 'cafe',
   },
   {
@@ -48,7 +48,7 @@ export const products: Product[] = [
     description:
       'Café filtrado no método artesanal, com perfil equilibrado, acidez delicada e finalização limpa.',
     price: 12,
-    image: '/images/products/coado-artesanal.svg',
+    image: '/images/products/coado-artesanal.png',
     category: 'cafe',
   },
   {
@@ -58,7 +58,7 @@ export const products: Product[] = [
     description:
       'Bebida equilibrada com textura aveludada e sabor marcante de café, ideal para quem prefere menos espuma.',
     price: 15.5,
-    image: '/images/products/latte-baunilha.svg',
+    image: '/images/products/flat-white.png',
     category: 'cafe',
   },
   {
@@ -68,7 +68,7 @@ export const products: Product[] = [
     description:
       'Combinação aromática com espresso, leite vaporizado e finalização de caramelo, perfeita para uma pausa doce.',
     price: 18.9,
-    image: '/images/products/mocha-chocolate.svg',
+    image: '/images/products/macchiato-caramelo.png',
     category: 'cafe',
   },
   {
@@ -78,7 +78,7 @@ export const products: Product[] = [
     description:
       'Café extraído por longas horas em água fria, servido gelado com notas cítricas e baixa acidez.',
     price: 16,
-    image: '/images/products/espresso-tradicional.svg',
+    image: '/images/products/cold-brew-citrico.png',
     category: 'cafe',
   },
 ]
