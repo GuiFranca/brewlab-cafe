@@ -1,6 +1,15 @@
+'use client';
+
 import styles from './Hero.module.css'
 
 export default function Hero() {
+  const handleScrollToMenu = () => {
+    const menuElement = document.getElementById('menu');
+    if (menuElement) {
+      menuElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className={styles.hero}>
       <div className={styles.content}>
@@ -15,7 +24,7 @@ export default function Hero() {
           para quem ama café.
         </p>
 
-        <button className={styles.cta}>
+        <button className={styles.cta} onClick={handleScrollToMenu}>
           Ver Cardápio
         </button>
       </div>

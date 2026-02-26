@@ -32,4 +32,9 @@ body {
   background: var(--coffee-bg);
   color: var(--coffee-text);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+}
+
+#menu {
+  scroll-margin-top: 100px;
 }
