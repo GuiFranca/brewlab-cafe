@@ -1,19 +1,8 @@
-@import "tailwindcss";
-
 :root {
   --coffee-primary: #5b3a29;
   --coffee-accent: #925b2d;
   --coffee-bg: #f6f3ef;
   --coffee-text: #2b2b2b;
-  --background: var(--coffee-bg);
-  --foreground: var(--coffee-text);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 * {

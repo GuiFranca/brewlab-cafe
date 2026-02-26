@@ -1,7 +1,6 @@
 # Cafézin - Mini Aplicacao Next.js
 
 Mini aplicacao web desenvolvida com **Next.js + TypeScript** simulando o cardapio digital de uma cafeteria moderna.
-O objetivo do projeto e demonstrar na pratica conceitos fundamentais de **HTML, CSS, JavaScript, Node.js, React e Next.js**, aplicando diferentes estrategias de renderizacao e boas praticas de organizacao.
 
 ---
 
@@ -134,18 +133,13 @@ Boas praticas aplicadas:
 
 # Funcionalidades Implementadas
 
-* Listagem de produtos (minimo 5 itens)
+* Listagem de produtos
 * Rota dinamica via slug
 * Pagina detalhe com ISR
 * Pagina de perfil com CSR
 * API Routes mockadas
 * Layout responsivo
-* Codigo em TypeScript
-* ESLint e Prettier configurados
 
-Extras implementados:
-
-* Identidade visual premium inspirada em cafeterias modernas.
 * Componentizacao reutilizavel.
 
 ---
@@ -181,10 +175,12 @@ npm start
 # Scripts Disponiveis
 
 ```text
-npm run dev     → ambiente de desenvolvimento
-npm run build   → build de producao
-npm run start   → iniciar producao
-npm run lint    → analise de codigo
+npm run dev      → ambiente de desenvolvimento
+npm run build    → build de producao
+npm run start    → iniciar producao
+npm run lint     → analise de codigo
+npm test         → executar testes unitarios
+npm run coverage → cobertura de testes
 ```
 
 ---
@@ -196,8 +192,3 @@ npm run lint    → analise de codigo
 * CSR foi escolhido para o perfil por envolver dados personalizados.
 * CSS Modules foi adotado pela simplicidade e isolamento de estilos.
 
----
-
-# Autor
-
-Projeto desenvolvido como exercicio pratico de aplicacao dos conceitos modernos de desenvolvimento web com Next.js.
