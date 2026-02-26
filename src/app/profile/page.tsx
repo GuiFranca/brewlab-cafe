@@ -33,7 +33,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <main className={styles.container}>
+    <main>
       <h1 className={styles.title}>Perfil do Usuario</h1>
       <p className={styles.subtitle}>
         Conteudo personalizado em CSR com autenticacao simulada via estado local.

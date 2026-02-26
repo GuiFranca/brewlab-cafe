@@ -10,7 +10,7 @@ export default async function HomePage() {
     <>
       <Hero />
 
-      <main className={styles.container}>
+      <main>
         <h2>Nosso Cardápio</h2>
 
         <div className={styles.grid}>

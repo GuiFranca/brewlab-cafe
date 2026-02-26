@@ -26,7 +26,7 @@ export default async function ProductPage({ params }: Props) {
   }
 
   return (
-    <main className={styles.container}>
+    <main className={styles.content}>
       <div className={styles.image}>
         <Image
           src={product.image}

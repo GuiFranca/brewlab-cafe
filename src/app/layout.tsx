@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
+import Container from '@/components/Container'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <body>
         <Header />
-        {children}
+        <Container>{children}</Container>
       </body>
     </html>
   )
